@@ -16,6 +16,7 @@ $result = mysqli_query($koneksi, $query);
 <html>
 <head>
     <title>Tambah Tugas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Tambah Tugas</h2>

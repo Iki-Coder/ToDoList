@@ -16,6 +16,7 @@ $result = mysqli_query($koneksi, $query);
 <html>
 <head>
     <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <p style="float: right;">

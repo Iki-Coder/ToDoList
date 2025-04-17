@@ -18,6 +18,7 @@ $data = mysqli_fetch_assoc($result);
 <html>
 <head>
     <title>Edit Tugas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Edit Tugas</h2>
