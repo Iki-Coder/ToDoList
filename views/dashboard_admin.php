@@ -48,7 +48,7 @@ $result = mysqli_query($koneksi, $query);
                 <?php if ($data['status'] == 'belum dikerjakan'): ?>
                     <a href="edit_tugas.php?id=<?= $data['id']; ?>">Edit</a> |
                 <?php endif; ?>
-                <a href="../proses/proses_hapus_tugas.php?id=<?= $data['id']; ?>">Hapus</a>
+                <a href="../proses/proses_hapus_tugas.php?id=<?= $data['id']; ?>"onclick="return confirm('Yakin dihapus NIHH???')">Hapus</a>
             </td>
         </tr>
         <?php endwhile; ?>
