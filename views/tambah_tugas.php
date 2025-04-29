@@ -29,7 +29,7 @@ if ($_SESSION['peran'] == 'admin') {
 </head>
 <body>
     <h2>Tambah Tugas</h2>
-    <a href="dashboard_bos.php">Kembali ke Dashboard</a><br><br>
+    <a href="<?= $dashboard ?>">Kembali ke Dashboard</a><br><br>
 
     <form action="../proses/proses_tambah_tugas.php" method="POST">
     <label>Tugas:</label><br>
