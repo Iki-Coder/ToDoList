@@ -10,6 +10,16 @@ if ($_SESSION['peran'] != 'admin' && $_SESSION['peran'] != 'bos') {
 
 $query = "SELECT * FROM pengguna WHERE peran='pegawai'";
 $result = mysqli_query($koneksi, $query);
+
+$dashboard = '';
+if ($_SESSION['peran'] == 'admin') {
+    $dashboard = 'dashboard_admin.php';
+} elseif ($_SESSION['peran'] == 'manager') {
+    $dashboard = 'dashboard_manager.php';
+} else {
+    $dashboard = 'dashboard_bos.php';
+}
+
 ?>
 
 <!DOCTYPE html>
