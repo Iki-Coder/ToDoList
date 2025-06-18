@@ -10,51 +10,66 @@ if ($_SESSION['peran'] != 'bos') {
 $query = "SELECT tugas.*, pengguna.username FROM tugas 
           JOIN pengguna ON tugas.ditugaskan_kepada = pengguna.id";
 $result = mysqli_query($koneksi, $query);
+$jumlah_tugas = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Dashboard Bos</title>
-    
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <p style="float: right;">
-        <a href="../logout.php">Logout</a>
-    </p>
+<div class="container">
 
-    <p>Selamat datang</p>
-    <h2>Bos <?= $_SESSION['username']; ?></h2>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Halo, Bos <span style="color: #03dac6"><?= $_SESSION['username']; ?></span></h2>
+        <a class="btn" href="../logout.php">Logout</a>
+    </div>
 
-    <h3>Tugas:</h3>
+    <hr style="margin: 20px 0; border-color: #333;">
 
-    <table border="1">
-        <tr>
-            <th>Tugas</th>
-            <th>Waktu Diberikan</th>
-            <th>Batas Waktu</th>
-            <th>Status</th>
-            <th>Diberikan ke</th>
-            <th>ToDo</th>
-        </tr>
-        <?php while ($data = mysqli_fetch_assoc($result)): ?>
-        <tr>
-            <td><?= $data['tugas']; ?></td>
-            <td><?= $data['waktu_diberikan']; ?></td>
-            <td><?= $data['batas_waktu']; ?></td>
-            <td><?= $data['status']; ?></td>
-            <td><?= $data['username']; ?></td>
-            <td>
-                <?php if ($data['status'] == 'belum dikerjakan'): ?>
-                    <a href="edit_tugas.php?id=<?= $data['id']; ?>">Edit</a> |
-                <?php endif; ?>
-                <a href="../proses/proses_hapus_tugas.php?id=<?= $data['id']; ?>"onclick="return confirm('Yakin dihapus BOS???')">Hapus</a>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
+    <?php if ($jumlah_tugas > 0): ?>
+        <h3>Daftar Tugas</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tugas</th>
+                    <th>Waktu Diberikan</th>
+                    <th>Batas Waktu</th>
+                    <th>Status</th>
+                    <th>Diberikan ke</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($data = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?= $data['tugas']; ?></td>
+                    <td><?= $data['waktu_diberikan']; ?></td>
+                    <td><?= $data['batas_waktu']; ?></td>
+                    <td><?= $data['status']; ?></td>
+                    <td><?= $data['username']; ?></td>
+                    <td>
+                        <?php if ($data['status'] == 'belum dikerjakan'): ?>
+                            <a class="btn btn-small" href="edit_tugas.php?id=<?= $data['id']; ?>">Edit</a>
+                        <?php endif; ?>
+                        <a class="btn btn-small" style="background-color: #cf6679; color: #fff;"
+                           href="../proses/proses_hapus_tugas.php?id=<?= $data['id']; ?>"
+                           onclick="return confirm('Yakin dihapus BOS???')">Hapus</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p style="text-align: center; margin-top: 50px;">Tidak ada penugasan.</p>
+    <?php endif; ?>
 
     <br>
-    <a href="tambah_tugas.php">Tambah Tugas</a><br><br>
+    <a class="btn" href="tambah_tugas.php">+ Tambah Tugas</a>
+
+</div>
 </body>
 </html>

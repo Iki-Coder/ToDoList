@@ -26,18 +26,25 @@ if ($_SESSION['peran'] == 'admin') {
 <html>
 <head>
     <title>Edit Tugas</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <h2>Edit Tugas</h2>
-    <a href="<?= $dashboard ?>">Kembali ke Dashboard</a><br><br>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Edit Tugas</h2>
+            <a class="btn" href="<?= $dashboard ?>">Kembali ke Dashboard</a>
+        </div>
 
-    <form action="../proses/proses_edit_tugas.php" method="POST">
-        <input type="hidden" name="id" value="<?= $data['id']; ?>">
+        <hr style="margin: 20px 0; border-color: #333;">
 
-        <label>Judul Tugas:</label><br>
-        <input type="text" name="tugas" value="<?= $data['tugas']; ?>" required><br><br>
+        <form action="../proses/proses_edit_tugas.php" method="POST">
+            <input type="hidden" name="id" value="<?= $data['id']; ?>">
 
-        <button type="submit">Ganti Tugas</button>
-    </form>
+            <label for="tugas">Judul Tugas:</label><br>
+            <input type="text" id="tugas" name="tugas" value="<?= htmlspecialchars($data['tugas']); ?>" required><br><br>
+
+            <button class="btn" type="submit">Ganti Tugas</button>
+        </form>
+    </div>
 </body>
 </html>

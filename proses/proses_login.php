@@ -16,6 +16,7 @@ if (mysqli_num_rows($result) === 1) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['peran'] = $user['peran'];
 
+
         if ($user['peran'] == 'admin') {
             header("Location: ../views/dashboard_admin.php");
         } elseif ($user['peran'] == 'bos') {
