@@ -64,7 +64,7 @@ $jumlah_tugas = mysqli_num_rows($result);
             </tbody>
         </table>
     <?php else: ?>
-        <p style="text-align: center; margin-top: 50px;">Tidak ada penugasan.</p>
+        <h1 style="text-align: center; margin-top: 50px;">Tidak ada penugasan.</h1>
     <?php endif; ?>
 
     <br>
